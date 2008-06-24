@@ -1,7 +1,7 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: todoode_development
+  database: redline_development
   username: root
   password:
   host: localhost
@@ -9,7 +9,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: todoode_test
+  database: redline_test
   username: root
   password:
   host: localhost

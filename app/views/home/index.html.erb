@@ -1,10 +1,21 @@
-<h1>todoo.de</h1>
 
-<p>Dudes get things done</p>
+<h1>redline</h1>
 
-<%- if logged_in? -%>
-  <%= link_to('Logout', session_path, :method => :delete) %>
-<%- else -%>
-  <%= link_to('Login', new_session_path) %> |
-  <%= link_to('Register', new_user_path) %>
+<p>Combine urls with people</p>
+
+<ul>
+  <%- @combinations.each do |combination| -%>
+    <li><%=h combination.name %> - <%= auto_link combination.url %></li>
+  <%- end -%>
+</ul>
+
+<%= error_messages_for :combination %>
+<%- form_for :combination, :url => combinations_path do |form| -%>
+  <label for="combination_url">URL:</label>
+  <%= form.text_field(:url) %>
+  
+  <label for="combination_name">Name:</label>
+  <%= form.text_field(:name) %>
+  
+  <p><%= submit_tag('Verknüpfen') %></p>
 <%- end -%>

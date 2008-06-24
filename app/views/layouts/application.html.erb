@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
+<head>
+  <title>TEMPODOME - <%=h @page_title || 'We love it live – die neue Livebühne im Internet' %></title>
+	<meta http-equiv="content-Language" content="de" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<meta name="keywords" content="Tempodome" />
+    <meta name="description" content="Tempodome" />
+	
+    <meta name="language" content="de" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="publisher" content="Tempodome http://www.tempodome.com" />
+    <meta name="copyright" content="Copyright in 2008 by Tempodome http://www.tempodome.com" />
+    <meta name="author" content="Inlight http://www.tempodome.com" />
+
+    <meta name="DC.Language" content="de" />
+    <meta name="DC.Title" content="Tempodome" />
+
+    <meta name="DC.Creator" content="Tempodome http://www.tempodome.com/team" />
+    <meta name="DC.Publisher" content="Tempodome http://www.tempodome.com/imprint" />
+    <meta name="DC.Rights" content="Copyright in 2008 by Tempodome http://www.tempodome.com/imprint" />
+    
+    <link rel="home" href="http://www.tempodome.com/" />
+    <link rel="author" href="http://www.tempodome.com/team" />
+    <link rel="copyright" href="http://www.tempodome.com/imprint" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />    
+
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :all %>
+
+	<%= yield :head -%>
+</head>
+
+<body>
+  <%- if logged_in? -%>
+    <%= link_to('Logout', session_path, :method => :delete) %>
+  <%- else -%>
+    <%= link_to('Login', new_session_path) %> |
+    <%= link_to('Register', new_user_path) %>
+  <%- end -%>
+  <div id="content">
+	  <%= yield %>
+	</div>
+</body>
+</html>

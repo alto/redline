@@ -16,3 +16,5 @@ tmp/sockets/*
 db/*.sqlite3
 *.output
 database.yml
+schema.rb
+
