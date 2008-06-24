@@ -1,0 +1,40 @@
+8
+
+dir
+1076
+http://svn.mindmatters.dyndns.org/repos/inlight/platform/trunk/inlight-platform/vendor/plugins/annotate_models/tasks
+http://svn.mindmatters.dyndns.org/repos/inlight
+
+
+
+2008-01-07T16:58:45.407170Z
+34
+thorsten.boettger
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+94e4e00d-1941-0410-baa2-bde448c6cc14
+
+annotate_models_tasks.rake
+file
+
+
+
+
+2008-04-14T08:38:19.000000Z
+086689e740d4aec26378defa9c01bfcc
+2008-01-07T16:58:45.407170Z
+34
+thorsten.boettger
+
