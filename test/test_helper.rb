@@ -16,7 +16,19 @@ class Test::Unit::TestCase
     fields[:password_confirmation] = options[:password_confirmation] || fields[:password]
     User.new(fields)
   end
-  def create_user(options={}); (u = build_user(options)).save!; u; end
+  def create_user(options={})
+    user = build_user(options)
+    user.save!
+    user.person = options[:person] || create_person
+    user.person.save!
+    user
+  end
+
+  def build_person(options={})
+    options[:name] ||= 'person name'
+    Person.new(options)
+  end
+  def create_person(options={}); (o = build_person(options)).save!; o; end
 
 end
 

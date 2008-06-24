@@ -1,3 +1,8 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  
+  def self_view?(user)
+    return false if user.nil? || user == :false
+    user.id == current_user.id
+  end
+  
 end

@@ -2,9 +2,11 @@ class Combination < ActiveRecord::Base
 
   validates_presence_of :person
   validates_presence_of :site
+  validates_presence_of :created_by
   
   belongs_to :person
   belongs_to :site
+  belongs_to :creator, :class_name => 'Person', :foreign_key => 'created_by'
   
   after_save
   

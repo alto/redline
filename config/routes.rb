@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   map.resources :users
+  map.resources :people
   map.resources :combinations
 
   map.root :controller => "home"

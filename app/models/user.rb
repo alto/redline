@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   
+  has_one :person
+  
   before_save   :encrypt_password
   before_create :make_activation_code 
   after_create  :deliver_signup_notification

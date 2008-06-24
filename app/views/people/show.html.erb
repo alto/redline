@@ -1,0 +1,29 @@
+<h1><%=h @person.name %></h1>
+
+<strong>People <%=h self_view?(@person.user) ? 'you know' : "#{@person.name} knows" %></strong>
+<ul>
+  <%- @people.each do |person| -%>
+    <li>
+      <%= link_to(person.name, person_path(person)) %> 
+      has <%= pluralize(person.sites.length, 'Url', 'Urls') %>
+    </li>
+  <%- end -%>
+</ul>
+
+<strong>Combinations <%=h self_view?(@person.user) ? 'you' : @person.name %> created</strong>
+<ul>
+  <%- @combinations.each do |combination| -%>
+    <li><%=h combination.name %> - <%= auto_link combination.url %></li>
+  <%- end -%>
+</ul>
+
+<%= error_messages_for :combination %>
+<%- form_for :combination, :url => combinations_path do |form| -%>
+  <label for="combination_url">URL:</label>
+  <%= form.text_field(:url) %>
+  
+  <label for="combination_name">Name:</label>
+  <%= form.text_field(:name) %>
+  
+  <p><%= submit_tag('Verknüpfen') %></p>
+<%- end -%>

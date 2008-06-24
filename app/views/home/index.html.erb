@@ -3,19 +3,3 @@
 
 <p>Combine urls with people</p>
 
-<ul>
-  <%- @combinations.each do |combination| -%>
-    <li><%=h combination.name %> - <%= auto_link combination.url %></li>
-  <%- end -%>
-</ul>
-
-<%= error_messages_for :combination %>
-<%- form_for :combination, :url => combinations_path do |form| -%>
-  <label for="combination_url">URL:</label>
-  <%= form.text_field(:url) %>
-  
-  <label for="combination_name">Name:</label>
-  <%= form.text_field(:name) %>
-  
-  <p><%= submit_tag('Verknüpfen') %></p>
-<%- end -%>
