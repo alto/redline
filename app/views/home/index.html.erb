@@ -1,5 +1,13 @@
 
-<h1>redline</h1>
+<h1>REDLINE</h1>
 
-<p>Combine urls with people</p>
+<p>Connecting people</p>
 
+<h2>Try it out!</h2>
+
+<%- form_tag search_url, :method => :get do -%>
+  <label for="query">Enter URL:</label>
+  <%= text_field_tag(:query) %>
+  
+  <%= submit_tag('Search') %>
+<%- end -%>

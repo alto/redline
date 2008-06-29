@@ -1,0 +1,17 @@
+<h1>Search results for <%= auto_link @query %></h1>
+
+<ul>
+  <%- @sites.each do |site| -%>
+    <%- site.claims.each do |claim| -%>
+      <li>
+        claimed by <%= small_user(claim.user) %>
+      </li>
+    <%- end -%>
+    <%- site.connections.each do |connection| -%>
+      <li>
+        linked to <%=h connection.name %> 
+        by <%= small_user(connection.user) %>
+      </li>
+    <%- end -%>
+  <%- end -%>
+</ul>

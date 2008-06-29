@@ -5,6 +5,10 @@ module ApplicationHelper
     user.id == current_user.id
   end
 
+  def small_user(user)
+    link_to(photo_tag(user.photo, :mini) + " #{user.name}", user_path(user))
+  end
+
   def photo_tag(image, size, html_options={}, options={})
     filename = photo_path(image, size)
     if options[:path_only]

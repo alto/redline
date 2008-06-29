@@ -45,6 +45,15 @@
     <%= link_to('Login', new_session_path) %> |
     <%= link_to('Register', new_user_path) %>
   <%- end -%>
+  
+  <div id="header">
+    <%= link_to('REDLINE', root_path) %>
+    <%- form_tag search_url, :method => :get do -%>
+      <%= text_field_tag(:query, @query) %>
+      <%= submit_tag('Search') %>
+    <%- end -%>    
+  </div>
+  
   <div id="content">
 	  <%= yield %>
 	</div>
