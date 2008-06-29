@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     @claims = @user.claims
     @claim = Claim.new
     @people = @user.people.uniq
-    @combinations = @user.combinations
-    @combination = Combination.new
+    @connections = @user.connections
+    # @combination = Combination.new
   end
 
   def new

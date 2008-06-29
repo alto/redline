@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :claims
   map.resources :people
-  map.resources :combinations
+  map.resources :connections
 
   map.root :controller => "home"
 

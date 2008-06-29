@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   has_one :person
   
   has_many :claims
-  has_many :combinations
-  has_many :people, :through => :combinations#, :source => :person
+  has_many :connections
+  has_many :people, :through => :connections#, :source => :person
   
   before_save   :encrypt_password
   before_create :make_activation_code 

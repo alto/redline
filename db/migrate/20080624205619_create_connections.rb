@@ -1,6 +1,6 @@
-class CreateCombinations < ActiveRecord::Migration
+class CreateConnections < ActiveRecord::Migration
   def self.up
-    create_table :combinations do |t|
+    create_table :connections do |t|
       t.integer :person_id
       t.integer :site_id
       t.timestamps
@@ -8,6 +8,6 @@ class CreateCombinations < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :combinations
+    drop_table :connections
   end
 end

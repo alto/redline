@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CombinationsControllerTest < ActionController::TestCase
+class ConnectionTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   def test_truth
     assert true

@@ -6,10 +6,10 @@
     <li>
       <%=h claim.label %> - <%= auto_link claim.url %>
       <ul>
-        <%- claim.site.combinations.each do |combination| -%>
+        <%- claim.site.connections.each do |connection| -%>
           <li>
-            <%= link_to(combination.user.name, user_path(combination.user)) %>
-            named it <%=h combination.name %>
+            <%= link_to(connection.user.name, user_path(connection.user)) %>
+            named it <%=h connection.name %>
           </li>
         <%- end -%>
       </ul>
@@ -36,20 +36,20 @@
   <%- end -%>
 </ul>
 
-<strong>Combinations <%=h self_view?(@user) ? 'you' : @user.name %> created</strong>
+<strong>Connections <%=h self_view?(@user) ? 'you' : @user.name %> created</strong>
 <ul>
-  <%- @combinations.each do |combination| -%>
-    <li><%=h combination.name %> - <%= auto_link combination.url %></li>
+  <%- @connections.each do |connection| -%>
+    <li><%=h connection.name %> - <%= auto_link connection.url %></li>
   <%- end -%>
 </ul>
 
 <%- if self_view?(@user) -%>
-  <%= error_messages_for :combination %>
-  <%- form_for :combination, :url => combinations_path do |form| -%>
-    <label for="combination_url">URL:</label>
+  <%= error_messages_for :connection %>
+  <%- form_for :connection, :url => connections_path do |form| -%>
+    <label for="connection_url">URL:</label>
     <%= form.text_field(:url) %>
   
-    <label for="combination_name">Name:</label>
+    <label for="connection_name">Name:</label>
     <%= form.text_field(:name) %>
   
     <p><%= submit_tag('Connect') %></p>

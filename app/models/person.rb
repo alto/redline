@@ -16,8 +16,8 @@ class Person < ActiveRecord::Base
   
   belongs_to :user
   
-  has_many :combinations
-  has_many :people, :through => :combinations
-  has_many :sites, :through => :combinations
+  has_many :connections
+  has_many :people, :through => :connections
+  has_many :sites, :through => :connections
   
 end

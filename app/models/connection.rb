@@ -11,7 +11,7 @@
 #  created_by :integer(11)     
 #
 
-class Combination < ActiveRecord::Base
+class Connection < ActiveRecord::Base
 
   validates_presence_of :person
   validates_presence_of :site
