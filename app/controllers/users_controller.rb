@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :login_required, :only => [:show]
+  before_filter :login_required, :only => [:show,:edit,:update,:destroy]
 
   def show
     @user = User.find(params[:id])
@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     @claim = Claim.new
     @people = @user.people.uniq
     @connections = @user.connections
-    # @combination = Combination.new
   end
 
   def new
@@ -29,6 +28,18 @@ class UsersController < ApplicationController
     else
       render :action => 'new'
     end
+  end
+  
+  def edit
+    @user = current_user
+  end
+  
+  def update
+    @user = current_user
+    unless @user.update_attributes(params[:user])
+      render :action => 'edit' and return
+    end
+    redirect_to user_path(@user)
   end
 
   def activate

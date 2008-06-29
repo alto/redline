@@ -1,30 +1,35 @@
-<h1><%=h @user.name %></h1>
+<%= photo_tag(@user.photo, :medium) %>
 
-<strong><%=h self_view?(@user) ? 'Your' : "#{@user.name}'s" %> claimed sites</strong>
-<ul>
-  <%- @claims.each do |claim| -%>
-    <li>
-      <%=h claim.label %> - <%= auto_link claim.url %>
-      <ul>
-        <%- claim.site.connections.each do |connection| -%>
-          <li>
-            <%= link_to(connection.user.name, user_path(connection.user)) %>
-            named it <%=h connection.name %>
-          </li>
-        <%- end -%>
-      </ul>
-    </li>
+<h1><%=h @user.name %></h1>
+<%= link_to('edit profile', edit_user_path(current_user)) if self_view?(@user) %>
+
+<div>
+  <strong><%=h self_view?(@user) ? 'Your' : "#{@user.name}'s" %> claimed sites</strong>
+  <ul>
+    <%- @claims.each do |claim| -%>
+      <li>
+        <%=h claim.label %> - <%= auto_link claim.url %>
+        <ul>
+          <%- claim.site.connections.each do |connection| -%>
+            <li>
+              <%= link_to(connection.user.name, user_path(connection.user)) %>
+              named it <%=h connection.name %>
+            </li>
+          <%- end -%>
+        </ul>
+      </li>
+    <%- end -%>
+  </ul>
+  <%- if self_view?(@user) -%>
+    <%- form_for :claim, :url => claims_path do |form| -%>
+      <label for="claim_url">URL:</label>
+      <%= form.text_field(:url) %>
+      <label for="claim_label">Label:</label>
+      <%= form.text_field(:label) %>
+      <p><%= submit_tag('Claim this url') %></p>
+    <%- end -%>
   <%- end -%>
-</ul>
-<%- if self_view?(@user) -%>
-  <%- form_for :claim, :url => claims_path do |form| -%>
-    <label for="claim_url">URL:</label>
-    <%= form.text_field(:url) %>
-    <label for="claim_label">Label:</label>
-    <%= form.text_field(:label) %>
-    <p><%= submit_tag('Claim this url') %></p>
-  <%- end -%>
-<%- end -%>
+</div>
 
 <strong>People <%=h self_view?(@user) ? 'you know' : "#{@user.name} knows" %></strong>
 <ul>

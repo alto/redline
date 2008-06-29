@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   
+  has_one :photo, :dependent => :destroy
+  
   has_many :claims
   has_many :connections
   has_many :people, :through => :connections#, :source => :person
@@ -39,10 +41,17 @@ class User < ActiveRecord::Base
   after_create  :deliver_signup_notification
   after_save    :deliver_activation
 
-  attr_accessible :login, :email, :password, :password_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation, :photo_file
 
   def name
     login
+  end
+  
+  def photo_file=(photo_file)
+    # photo.destroy if photo
+    unless photo_file.blank?
+      self.create_photo(:uploaded_data => photo_file, :user_id => self.id)
+    end
   end
 
   def activate

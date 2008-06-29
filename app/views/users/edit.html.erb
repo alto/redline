@@ -1,0 +1,19 @@
+<%= error_messages_for :user %>
+
+<%- form_for :user, :url => user_path(@user), 
+   :html => {:method => :put, :multipart => true} do |form| -%>
+
+  <p><label for="user_photo_file">Image (jpg, gif, png)</label></p>
+  <%= file_field_tag(:photo_file, :name => "user[photo_file]") %>
+
+  <p><label for="user_password">Password</label><br/>
+  <%= form.password_field :password %></p>
+
+  <p><label for="user_password_confirmation">Confirm Password</label><br/>
+  <%= form.password_field :password_confirmation %></p>
+
+  <p>
+    <%= submit_tag "Change profile" %>
+    or <%= link_to('return to profile', user_path(@user)) %>
+  </p>
+<%- end -%>

@@ -6,7 +6,7 @@ class ConnectionsController < ApplicationController
     @connection = Connection.new(params[:connection])
     @connection.user = current_user
     @connection.save!
-    redirect_to root_path
+    redirect_to user_path(current_user)
   end
   
 end
