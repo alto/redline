@@ -8,7 +8,7 @@
   <ul>
     <%- @claims.each do |claim| -%>
       <li>
-        <%=h claim.label %> - <%= auto_link claim.url %>
+        <%= icon_link_to(claim.url) %>
         <ul>
           <%- claim.site.connections.each do |connection| -%>
             <li>
@@ -24,8 +24,6 @@
     <%- form_for :claim, :url => claims_path do |form| -%>
       <label for="claim_url">URL:</label>
       <%= form.text_field(:url) %>
-      <!-- <label for="claim_label">Label:</label>
-      <%#= form.text_field(:label) %> -->
       <p><%= submit_tag('Claim this url') %></p>
     <%- end -%>
   <%- end -%>

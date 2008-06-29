@@ -19,10 +19,6 @@ class Claim < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
   
-  def label
-    read_attribute(:label).blank? ? url : read_attribute(:label)
-  end
-  
   def url=(url)
     self.site = Site.find_by_url(url) || Site.new(:url => url)
   end

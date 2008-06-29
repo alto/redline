@@ -31,6 +31,22 @@ module ApplicationHelper
     end
   end
   
+  def icon_link_to(url, size='pin')
+    link_to(icon_tag(url, size), url, :title => url)
+  end
+  
+  def icon_tag(url, size='mini')
+    image = case url
+    when /xing\.com/
+      "icons/xing_#{size}.jpg"
+    when /twitter\.com/
+      "icons/twitter_#{size}.png"
+    else
+      "icons/homepage_#{size}.png"
+    end
+    image_tag(image)
+  end
+  
   def invited?
     !session[:inviter].blank?
   end

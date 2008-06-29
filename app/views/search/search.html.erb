@@ -1,14 +1,14 @@
-<h1>Search results for <%= auto_link @query %></h1>
+<h1>Search results for <%= icon_link_to(@query, 'mini') %> <%= auto_link @query %></h1>
 
 <%- if logged_in? -%>
   <%- form_for :connection, :url => connections_path do |form| -%>
-    <label for="connection_url">URL:</label>
+    <label for="connection_url">Connect this link:</label>
     <%= form.text_field(:url) %>
 
-    <label for="connection_name">Name:</label>
+    <label for="connection_name">with</label>
     <%= form.text_field(:name) %>
 
-    <p><%= submit_tag('Connect') %></p>
+    <%= submit_tag('now') %>
   <%- end -%>
 <%- end -%>
 
