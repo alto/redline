@@ -26,7 +26,7 @@ module ApplicationHelper
     if image && !image.new_record?
       image_path(image.public_filename(size))
     else
-      "" # image_tag('dummy_deed_pic.jpg', html_options)
+      "default_user_image_#{size.to_s}.png"
     end
   end
   

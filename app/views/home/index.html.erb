@@ -4,10 +4,16 @@
 <p>Connecting people</p>
 
 <h2>Try it out!</h2>
-
 <%- form_tag search_url, :method => :get do -%>
   <label for="query">Enter URL:</label>
   <%= text_field_tag(:query) %>
   
   <%= submit_tag('Search') %>
 <%- end -%>
+
+<h2>Users so far</h2>
+<ul>
+  <%- @users.each do |user| -%>
+    <li><%= link_to(photo_tag(user.photo, :medium), user_path(user)) %></li>
+  <%- end -%>
+</ul>

@@ -9,10 +9,7 @@ log/*
 coverage
 .DS_Store
 *.pid
-tmp/cache/*
-tmp/pids/*
-tmp/sessions/*
-tmp/sockets/*
+tmp
 db/*.sqlite3
 *.output
 database.yml
