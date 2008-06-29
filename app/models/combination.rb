@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20080624222854
+#
+# Table name: combinations
+#
+#  id         :integer(11)     not null, primary key
+#  person_id  :integer(11)     
+#  site_id    :integer(11)     
+#  created_at :datetime        
+#  updated_at :datetime        
+#  created_by :integer(11)     
+#
+
 class Combination < ActiveRecord::Base
 
   validates_presence_of :person
