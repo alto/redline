@@ -43,9 +43,16 @@ class User < ActiveRecord::Base
 
   attr_accessible :login, :email, :password, :password_confirmation, :photo_file
 
+  acts_as_slugable :source_column => :login
+
   def name
     login
   end
+  
+  def to_param
+    url_slug
+  end
+  
   
   def photo_file=(photo_file)
     # photo.destroy if photo

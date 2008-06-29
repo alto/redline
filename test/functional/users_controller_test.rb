@@ -16,7 +16,7 @@ class UsersControllerTest < Test::Unit::TestCase
       @user = create_user
     end
     should "be successfull" do
-      get :show, :id => @user.id
+      get :show, :id => @user.to_param
       assert_response :success
     end
     # should "deliver the logged in user's sites" do

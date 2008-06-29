@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :inviter_required, :only => [:new,:create]
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_url_slug(params[:id])
     @claims = @user.claims
     @claim = Claim.new
     @people = @user.people.uniq
