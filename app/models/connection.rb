@@ -1,14 +1,14 @@
 # == Schema Information
-# Schema version: 20080624222854
+# Schema version: 20080629091000
 #
-# Table name: combinations
+# Table name: connections
 #
 #  id         :integer(11)     not null, primary key
 #  person_id  :integer(11)     
 #  site_id    :integer(11)     
 #  created_at :datetime        
 #  updated_at :datetime        
-#  created_by :integer(11)     
+#  user_id    :integer(11)     
 #
 
 class Connection < ActiveRecord::Base

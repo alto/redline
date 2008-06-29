@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20080629091000
+#
+# Table name: claims
+#
+#  id         :integer(11)     not null, primary key
+#  user_id    :integer(11)     
+#  site_id    :integer(11)     
+#  label      :string(255)     
+#  created_at :datetime        
+#  updated_at :datetime        
+#
+
 class Claim < ActiveRecord::Base
 
   validates_presence_of :user_id
