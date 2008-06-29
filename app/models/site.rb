@@ -17,4 +17,8 @@ class Site < ActiveRecord::Base
   has_many :connections
   has_many :claims
   
+  def claimed?
+    !claims.empty?
+  end
+  
 end

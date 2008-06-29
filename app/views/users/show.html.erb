@@ -30,8 +30,18 @@
 <ul>
   <%- @people.each do |person| -%>
     <li>
-      <%= link_to(person.name, person_path(person)) %> 
-      has <%= pluralize(person.sites.length, 'Url', 'Urls') %>
+      <%=h person.name %> 
+      <ul>
+        <%- person.connections.each do |connection| -%>
+          <li>
+            <%= auto_link connection.url %>
+            <%- if connection.site.claimed? -%>
+              (claimed by 
+              <%= connection.site.claims.collect {|claim| link_to(claim.user.name, user_path(claim.user)) }.join(',') %>)
+            <%- end -%>
+          </li>
+        <%- end -%>
+      </ul>
     </li>
   <%- end -%>
 </ul>

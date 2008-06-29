@@ -19,8 +19,8 @@ class Test::Unit::TestCase
   def create_user(options={})
     user = build_user(options)
     user.save!
-    user.person = options[:person] || create_person
-    user.person.save!
+    # user.person = options[:person] || create_person
+    # user.person.save!
     user
   end
 

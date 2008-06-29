@@ -14,8 +14,6 @@ class Person < ActiveRecord::Base
     
   validates_presence_of :name
   
-  belongs_to :user
-  
   has_many :connections
   has_many :people, :through => :connections
   has_many :sites, :through => :connections
