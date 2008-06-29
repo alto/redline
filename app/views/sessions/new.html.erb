@@ -9,7 +9,9 @@
 <%= check_box_tag 'remember_me' %></p>
 
 <p>
-  <%= submit_tag 'Log in' %> or
-  <%= link_to('register', new_user_path) %>
+  <%= submit_tag 'Log in' %> 
+  <%- if invited? -%>
+    or <%= link_to('register', new_user_path) %>
+  <%- end -%>
 </p>
 <% end -%>

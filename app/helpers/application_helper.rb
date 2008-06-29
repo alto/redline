@@ -1,6 +1,7 @@
 module ApplicationHelper
   
   def self_view?(user)
+    return false unless logged_in?
     return false if user.nil? || user == :false
     user.id == current_user.id
   end
@@ -27,6 +28,10 @@ module ApplicationHelper
     else
       "" # image_tag('dummy_deed_pic.jpg', html_options)
     end
+  end
+  
+  def invited?
+    !session[:inviter].blank?
   end
   
 end

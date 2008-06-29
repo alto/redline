@@ -42,8 +42,10 @@
     <%= link_to(current_user.name, user_path(current_user)) %>
     <%= link_to('Logout', session_path, :method => :delete) %>
   <%- else -%>
-    <%= link_to('Login', new_session_path) %> |
-    <%= link_to('Register', new_user_path) %>
+    <%= link_to('Login', new_session_path) %>
+    <%- if invited? -%>
+      | <%= link_to('Register', new_user_path) %>
+    <%- end -%>
   <%- end -%>
   
   <div id="header">
@@ -53,6 +55,12 @@
       <%= submit_tag('Search') %>
     <%- end -%>    
   </div>
+  
+  <%- unless flash[:error].blank? -%>
+    <div id="error">
+      <%= flash[:error] %>
+    </div>
+  <%- end -%>
   
   <div id="content">
 	  <%= yield %>

@@ -71,7 +71,7 @@ module AuthenticatedSystem
         end
       end
     end
-
+    
     # Store the URI of the current request in the session.
     #
     # We can return to this location by calling #redirect_back_or_default.

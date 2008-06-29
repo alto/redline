@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  before_filter :login_required, :only => [:show,:edit,:update,:destroy]
+  before_filter :login_required, :only => [:edit,:update,:destroy]
+  before_filter :inviter_required, :only => [:new,:create]
 
   def show
     @user = User.find(params[:id])
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
     # uncomment at your own risk
     # reset_session
     @user = User.new(params[:user])
+    @user.inviter = User.find_by_login(session[:inviter]) unless session[:inviter].blank?
     @user.save
     if @user.errors.empty?
       self.current_user = @user
@@ -50,5 +52,23 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default('/')
   end
+  
+  private
+    def inviter_required
+      invitation_only if session[:inviter].blank?
+    end
+
+    def invitation_only
+      respond_to do |format|
+        format.html do
+          store_location
+          flash[:error] = 'You need an invitation!'
+          redirect_to root_path
+        end
+        format.any do
+          request_http_basic_authentication 'Web Password'
+        end
+      end
+    end
 
 end

@@ -15,14 +15,9 @@ class UsersControllerTest < Test::Unit::TestCase
     setup do
       @user = create_user
     end
-    should "grant access if user is logged in" do
-      login_as @user
+    should "be successfull" do
       get :show, :id => @user.id
       assert_response :success
-    end
-    should "deny access if user is not logged in" do
-      get :show, :id => @user.id
-      assert_redirected_to new_session_path
     end
     # should "deliver the logged in user's sites" do
     #   login_as(@user)
