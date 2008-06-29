@@ -1,1 +1,57 @@
-<h1>Mine</h1>
+<h1><%=h @user.name %></h1>
+
+<strong><%=h self_view?(@user) ? 'Your' : "#{@user.name}'s" %> claimed sites</strong>
+<ul>
+  <%- @claims.each do |claim| -%>
+    <li>
+      <%=h claim.label %> - <%= auto_link claim.url %>
+      <ul>
+        <%- claim.site.combinations.each do |combination| -%>
+          <li>
+            <%= link_to(combination.user.name, user_path(combination.user)) %>
+            named it <%=h combination.name %>
+          </li>
+        <%- end -%>
+      </ul>
+    </li>
+  <%- end -%>
+</ul>
+<%- if self_view?(@user) -%>
+  <%- form_for :claim, :url => claims_path do |form| -%>
+    <label for="claim_url">URL:</label>
+    <%= form.text_field(:url) %>
+    <label for="claim_label">Label:</label>
+    <%= form.text_field(:label) %>
+    <p><%= submit_tag('Claim this url') %></p>
+  <%- end -%>
+<%- end -%>
+
+<strong>People <%=h self_view?(@user) ? 'you know' : "#{@user.name} knows" %></strong>
+<ul>
+  <%- @people.each do |person| -%>
+    <li>
+      <%= link_to(person.name, person_path(person)) %> 
+      has <%= pluralize(person.sites.length, 'Url', 'Urls') %>
+    </li>
+  <%- end -%>
+</ul>
+
+<strong>Combinations <%=h self_view?(@user) ? 'you' : @user.name %> created</strong>
+<ul>
+  <%- @combinations.each do |combination| -%>
+    <li><%=h combination.name %> - <%= auto_link combination.url %></li>
+  <%- end -%>
+</ul>
+
+<%- if self_view?(@user) -%>
+  <%= error_messages_for :combination %>
+  <%- form_for :combination, :url => combinations_path do |form| -%>
+    <label for="combination_url">URL:</label>
+    <%= form.text_field(:url) %>
+  
+    <label for="combination_name">Name:</label>
+    <%= form.text_field(:name) %>
+  
+    <p><%= submit_tag('Connect') %></p>
+  <%- end -%>
+<%- end -%>

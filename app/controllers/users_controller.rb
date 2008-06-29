@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   before_filter :login_required, :only => [:show]
 
   def show
-    
+    @user = User.find(params[:id])
+    @claims = @user.claims
+    @claim = Claim.new
+    @people = @user.people.uniq
+    @combinations = @user.combinations
+    @combination = Combination.new
   end
 
   def new

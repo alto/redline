@@ -39,7 +39,7 @@
 
 <body>
   <%- if logged_in? -%>
-    <%= link_to(current_user.person.name, person_path(current_user.person)) %>
+    <%= link_to(current_user.name, user_path(current_user)) %>
     <%= link_to('Logout', session_path, :method => :delete) %>
   <%- else -%>
     <%= link_to('Login', new_session_path) %> |

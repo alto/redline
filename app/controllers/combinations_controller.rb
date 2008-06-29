@@ -4,7 +4,7 @@ class CombinationsController < ApplicationController
   
   def create
     @combination = Combination.new(params[:combination])
-    @combination.creator = current_user.person
+    @combination.user = current_user
     @combination.save!
     redirect_to root_path
   end

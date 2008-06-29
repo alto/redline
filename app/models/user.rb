@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   
   has_one :person
   
+  has_many :claims
+  has_many :combinations
+  has_many :people, :through => :combinations#, :source => :person
+  
   before_save   :encrypt_password
   before_create :make_activation_code 
   after_create  :deliver_signup_notification
@@ -40,7 +44,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :login, :email, :password, :password_confirmation
 
-  # Activates the user in the database.
+  def name
+    login
+  end
+
   def activate
     @activated = true
     self.activated_at = Time.now.utc

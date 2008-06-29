@@ -15,11 +15,11 @@ class Combination < ActiveRecord::Base
 
   validates_presence_of :person
   validates_presence_of :site
-  validates_presence_of :created_by
+  validates_presence_of :user_id
   
   belongs_to :person
   belongs_to :site
-  belongs_to :creator, :class_name => 'Person', :foreign_key => 'created_by'
+  belongs_to :user
   
   def name=(name)
     self.person = Person.find_by_name(name) || Person.new(:name => name)
