@@ -37,5 +37,10 @@ class ApplicationController < ActionController::Base
       end
       url
     end
+
+    def ensure_protocol(website)
+      return '' if website.blank?
+      website =~ /^http/ ? website : "http://#{website}"
+    end
   
 end
