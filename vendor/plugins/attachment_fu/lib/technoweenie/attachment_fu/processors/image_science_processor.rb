@@ -51,8 +51,19 @@ module Technoweenie # :nodoc:
                 img.resize(size[0], size[1], &grab_dimensions)
               end
             else
-              new_size = [img.width, img.height] / size.to_s
-              img.resize(new_size[0], new_size[1], &grab_dimensions)
+              n_size = [img.width, img.height] / size.to_s
+              if size.ends_with?('!')    #size.flag == :aspect  #size is a string
+                aspect = n_size[0].to_f / n_size[1].to_f
+                ih, iw = img.height, img.width
+                w, h = (ih * aspect), (iw / aspect)
+                w = [iw, w].min.to_i
+                h = [ih, h].min.to_i
+                img.with_crop( (iw-w)/2, (ih-h)/2, (iw+w)/2, (ih+h)/2) {
+                  |crop| crop.resize(n_size[0], n_size[1], &grab_dimensions )
+                }
+              else
+                img.resize(n_size[0], n_size[1], &grab_dimensions)
+              end
             end
           end
       end
