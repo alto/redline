@@ -17,8 +17,20 @@ class Site < ActiveRecord::Base
   has_many :connections
   has_many :claims
   
+  before_save :enhance_url
+  
   def claimed?
     !claims.empty?
   end
+  
+  private
+    def enhance_url
+      self.url = ensure_protocol(url) if valid?
+    end
+
+    def ensure_protocol(website)
+      return '' if website.blank?
+      website =~ /^http/ ? website : "http://#{website}"
+    end
   
 end

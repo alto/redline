@@ -24,8 +24,8 @@
     <%- form_for :claim, :url => claims_path do |form| -%>
       <label for="claim_url">URL:</label>
       <%= form.text_field(:url) %>
-      <label for="claim_label">Label:</label>
-      <%= form.text_field(:label) %>
+      <!-- <label for="claim_label">Label:</label>
+      <%#= form.text_field(:label) %> -->
       <p><%= submit_tag('Claim this url') %></p>
     <%- end -%>
   <%- end -%>
@@ -35,7 +35,11 @@
 <ul>
   <%- @people.each do |person| -%>
     <li>
-      <%=h person.name %> 
+      <%- if user = person.user -%>
+        <%= small_user(user, :name => person.name) %>
+      <%- else -%>
+        <%=h person.name %> | <%= link_to_function("Invite #{person.name}") %>
+      <%- end -%>
       <ul>
         <%- person.connections.each do |connection| -%>
           <li>

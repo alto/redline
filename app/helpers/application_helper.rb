@@ -6,8 +6,9 @@ module ApplicationHelper
     user.id == current_user.id
   end
 
-  def small_user(user)
-    link_to(photo_tag(user.photo, :mini) + " #{user.name}", user_path(user))
+  def small_user(user, options={})
+    name = options[:name] || user.name
+    link_to(photo_tag(user.photo, :mini) + " #{name}", user_path(user))
   end
 
   def photo_tag(image, size, html_options={}, options={})

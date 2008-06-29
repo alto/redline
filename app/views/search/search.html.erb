@@ -1,5 +1,17 @@
 <h1>Search results for <%= auto_link @query %></h1>
 
+<%- if logged_in? -%>
+  <%- form_for :connection, :url => connections_path do |form| -%>
+    <label for="connection_url">URL:</label>
+    <%= form.text_field(:url) %>
+
+    <label for="connection_name">Name:</label>
+    <%= form.text_field(:name) %>
+
+    <p><%= submit_tag('Connect') %></p>
+  <%- end -%>
+<%- end -%>
+
 <ul>
   <%- @sites.each do |site| -%>
     <%- site.claims.each do |claim| -%>
