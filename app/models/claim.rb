@@ -13,8 +13,8 @@
 
 class Claim < ActiveRecord::Base
 
-  validates_presence_of :user_id
-  validates_presence_of :site_id
+  validates_presence_of :user
+  validates_presence_of :site
   
   belongs_to :user
   belongs_to :site
