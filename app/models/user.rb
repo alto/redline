@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   before_create :make_activation_code 
   after_create  :deliver_signup_notification
   after_save    :deliver_activation
+  after_create  :create_person_for_user
 
   attr_accessible :login, :email, :password, :password_confirmation
 
@@ -123,6 +124,11 @@ class User < ActiveRecord::Base
     
     def make_activation_code
       self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    end
+    
+    def create_person_for_user
+      self.person = Person.new(:name => self.login)
+      self.person.save!
     end
     
 end

@@ -8,8 +8,6 @@ class Combination < ActiveRecord::Base
   belongs_to :site
   belongs_to :creator, :class_name => 'Person', :foreign_key => 'created_by'
   
-  after_save
-  
   def name=(name)
     self.person = Person.find_by_name(name) || Person.new(:name => name)
   end
@@ -23,5 +21,5 @@ class Combination < ActiveRecord::Base
   def url
     site ? site.url : nil
   end
-  
+
 end
