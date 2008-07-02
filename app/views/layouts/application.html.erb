@@ -31,39 +31,46 @@
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />    
 
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "reset" %>
+  <%= stylesheet_link_tag "text" %>
+  <%= stylesheet_link_tag "960" %>
+  <%= stylesheet_link_tag "redline" %>
   <%= javascript_include_tag :all %>
 
 	<%= yield :head -%>
 </head>
 
 <body>
-  <%- if logged_in? -%>
-    <%= link_to(current_user.name, user_path(current_user)) %>
-    <%= link_to('Logout', session_path, :method => :delete) %>
-  <%- else -%>
-    <%= link_to('Login', new_session_path) %>
-    <%- if invited? -%>
-      | <%= link_to('Register', new_user_path) %>
-    <%- end -%>
-  <%- end -%>
-  
-  <div id="header">
-    <%= link_to('REDLINE', root_path) %>
-    <%- form_tag search_url, :method => :get do -%>
-      <%= text_field_tag(:query, @query) %>
-      <%= submit_tag('Search') %>
-    <%- end -%>    
-  </div>
-  
-  <%- unless flash[:error].blank? -%>
-    <div id="error">
-      <%= flash[:error] %>
+  <div class="container_12">
+    <div id="header" class="grid_12">
+      <div id="topline">
+        <%- if logged_in? -%>
+          <%= link_to(current_user.name, user_path(current_user)) %>
+          <%= link_to('Logout', session_path, :method => :delete) %>
+        <%- else -%>
+          <%= link_to('Login', new_session_path) %>
+          <%- if invited? -%>
+            | <%= link_to('Register', new_user_path) %>
+          <%- end -%>
+        <%- end -%>
+        <%- form_tag search_url, :method => :get do -%>
+          <%= text_field_tag(:query, @query) %>
+          <%= submit_tag('Search') %>
+        <%- end -%>    
+      </div>
+
+      <div id="logo"><%= link_to('REDLINE <span>Connecting sites</span>', root_path) %></div>
     </div>
-  <%- end -%>
   
-  <div id="content">
-	  <%= yield %>
+    <%- unless flash[:error].blank? -%>
+      <div id="error" class="grid_10 prefix_1 suffix_1">
+        <%= flash[:error] %>
+      </div>
+    <%- end -%>
+  
+    <div id="content" class="grid_12">
+  	  <%= yield %>
+  	</div>
 	</div>
 </body>
 </html>

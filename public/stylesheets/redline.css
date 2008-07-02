@@ -1,0 +1,16 @@
+div#logo,
+div#logo a {
+  color: red;
+  font-size: 1.6em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+div#logo span {
+  font-size: 0.3em;
+  display: block;
+}
+
+div#topline {
+  float: right;
+}

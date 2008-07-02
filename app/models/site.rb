@@ -23,14 +23,15 @@ class Site < ActiveRecord::Base
     !claims.empty?
   end
   
+  def self.ensure_protocol(website)
+    return '' if website.blank?
+    website =~ /^http/ ? website : "http://#{website}"
+  end
+
   private
     def enhance_url
-      self.url = ensure_protocol(url) if valid?
+      self.url = Site.ensure_protocol(url) if valid?
     end
 
-    def ensure_protocol(website)
-      return '' if website.blank?
-      website =~ /^http/ ? website : "http://#{website}"
-    end
   
 end

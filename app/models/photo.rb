@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
     :thumbnails => { 
       :huge   => '118x118!', 
       :big    => '69x69!', 
-      :medium => '53x53!', 
+      :medium => '60x60!', 
       :small  => '35x35!',
       :mini   => '25x25!', 
       :pin    => '13x13!' 

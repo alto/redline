@@ -1,19 +1,19 @@
 
-<h1>REDLINE</h1>
+<h1>Welcome to REDLINE!</h1>
 
 <p>Connecting people</p>
 
 <h2>Try it out!</h2>
 <%- form_tag search_url, :method => :get do -%>
-  <label for="query">Enter URL:</label>
+  <label for="query">Enter link</label>
   <%= text_field_tag(:query) %>
   
-  <%= submit_tag('Search') %>
+  <%= submit_tag('to search for') %>
 <%- end -%>
 
 <h2>Users so far</h2>
 <ul>
   <%- @users.each do |user| -%>
-    <li><%= link_to(photo_tag(user.photo, :medium), user_path(user)) %></li>
+    <li class="grid_1"><%= link_to(photo_tag(user.photo, :medium), user_path(user)) %></li>
   <%- end -%>
 </ul>

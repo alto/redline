@@ -1,6 +1,4 @@
-<%= photo_tag(@user.photo, :medium) %>
-
-<h1><%=h @user.name %></h1>
+<h1><%= photo_tag(@user.photo, :medium) %> <%=h @user.name %></h1>
 <%= link_to('edit profile', edit_user_path(current_user)) if self_view?(@user) %>
 
 <div>
@@ -8,12 +6,13 @@
   <ul>
     <%- @claims.each do |claim| -%>
       <li>
-        <%= icon_link_to(claim.url) %>
+        <%= icon_link_to(claim.url) %> <%= auto_link claim.url %>
         <ul>
           <%- claim.site.connections.each do |connection| -%>
             <li>
-              <%= link_to(connection.user.name, user_path(connection.user)) %>
-              named it <%=h connection.name %>
+              <%= link_to(photo_tag(connection.user.photo, :mini), user_path(connection.user),
+                  :title => "#{h connection.user.name} named it #{h connection.name}") %>:
+              <%=h connection.name %>
             </li>
           <%- end -%>
         </ul>

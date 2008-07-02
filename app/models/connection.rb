@@ -29,6 +29,7 @@ class Connection < ActiveRecord::Base
   end
   
   def url=(url)
+    url = Site.ensure_protocol(url)
     self.site = Site.find_by_url(url) || Site.new(:url => url)
   end
   def url
