@@ -21,4 +21,5 @@ desc "Setting symlinks for everything"
 task :set_symlinks do
   run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   run "ln -s #{shared_path}/data #{release_path}/public/data"
+  run "cat #{shared_path}/config/mail.rb >>#{release_path}/config/environments/production.rb"
 end
