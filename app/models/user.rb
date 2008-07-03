@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   
+  belongs_to :inviter, :class_name => 'User'
   has_one :photo, :dependent => :destroy
   
   has_many :claims
