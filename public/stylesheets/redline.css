@@ -1,12 +1,13 @@
 div#logo,
 div#logo a {
-  color: red;
+  color: #B80000;
   font-size: 1.6em;
   font-weight: bold;
   text-decoration: none;
 }
 
 div#logo span {
+  color: #FF6800;
   font-size: 0.3em;
   display: block;
 }

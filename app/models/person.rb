@@ -32,4 +32,10 @@ class Person < ActiveRecord::Base
     User.find_by_id(max_user_id)
   end
   
+  def self.find_linking_to(user)
+    sites = user.claims.map(&:site)
+    connections_for_sites = sites.collect {|site| site.connections}.flatten
+    connections_for_sites.map(&:person)
+  end
+  
 end

@@ -53,6 +53,11 @@ class User < ActiveRecord::Base
     url_slug
   end
   
+  def self.find_linking_to(user)
+    sites = user.claims.map(&:site)
+    connections_for_sites = sites.collect {|site| site.connections}.flatten
+    connections_for_sites.map(&:user).uniq - [user]
+  end
   
   def photo_file=(photo_file)
     # photo.destroy if photo

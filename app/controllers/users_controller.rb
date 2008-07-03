@@ -6,9 +6,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_url_slug(params[:id])
     @claims = @user.claims
-    @claim = Claim.new
-    @people = @user.people.uniq
-    @connections = @user.connections
+    @linked_people = @user.people.uniq
+    @created_connections = @user.connections
+    @linking_users = User.find_linking_to(@user)
+    # @linking_people = Connection.find_to(@user)
   end
 
   def new

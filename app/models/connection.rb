@@ -35,5 +35,10 @@ class Connection < ActiveRecord::Base
   def url
     site ? site.url : nil
   end
-
+  
+  def self.find_to(user)
+    sites = user.claims.map(&:site)
+    connections_for_sites = sites.collect {|site| site.connections}.flatten
+  end
+  
 end
