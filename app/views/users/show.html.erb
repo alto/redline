@@ -3,12 +3,12 @@
 
 <h3><%=h self_view?(@user) ? 'Your' : "#{@user.name}'s" %> claimed sites</h3>
 <ul>
-  <%- @claims.each do |claim| -%>
+  <%- @claimed_sites.each do |site| -%>
     <li>
-      <%= icon_link_to(claim.url) %> <%= auto_link claim.url %>
+      <%= icon_link_to(site.url) %> <%= auto_link site.url %>
       <%- if false -%>
       <ul>
-        <%- claim.site.connections.each do |connection| -%>
+        <%- site.connections.each do |connection| -%>
           <li>
             <%= link_to(photo_tag(connection.user.photo, :mini), user_path(connection.user),
                 :title => "#{h connection.user.name} named it #{h connection.name}") %>:
@@ -28,15 +28,30 @@
   <%- end -%>
 <%- end -%>
 
+<h3>Colleages</h3>
+<ul>
+  <%- @user.colleages.each do |user| -%>
+    <li><%= small_user(user) %></li>
+  <%- end -%>
+</ul>
+
 <h3>People <%=h self_view?(@user) ? 'you know' : "#{@user.name} knows" %></h3>
 <ul>
   <%- @linked_people.each do |person| -%>
     <li>
+      <%=h person.name %>
+      <%- representing_users = person.representing_users.collect {|u| small_user(u)}.uniq -%>
+      <%- unless representing_users.empty? -%>
+        represented by
+        <%= representing_users.join(', ') %>
+      <%- end -%>
+      <%- if false -%>
       <%- if user = person.user -%>
         <%= small_user(user, :name => person.name) %>
       <%- else -%>
         <%=h person.name %> | <%= link_to_function("Invite #{person.name}") %>
       <%- end -%>
+      <%- if false -%>
       <ul>
         <%- person.connections.each do |connection| -%>
           <li>
@@ -48,6 +63,18 @@
           </li>
         <%- end -%>
       </ul>
+      <%- end -%>
+      <%- end -%>
+    </li>
+  <%- end -%>
+</ul>
+
+<h3>People <%=h @user.name %> represents</h3>
+<ul>
+  <%- @user.represented_people.each do |person| -%>
+    <li>
+      <%=h person.name %>
+      (by <%= small_user(person.user) %>)
     </li>
   <%- end -%>
 </ul>

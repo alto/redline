@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   has_one :photo, :dependent => :destroy
   
   has_many :claims
+  has_many :claimed_sites, :through => :claims, :source => :site
   has_many :connections
   has_many :people, :through => :connections#, :source => :person
   
@@ -52,6 +53,14 @@ class User < ActiveRecord::Base
   
   def to_param
     url_slug
+  end
+  
+  def colleages
+    claimed_sites.collect {|s| s.users}.flatten - [self]
+  end
+  
+  def represented_people
+    claimed_sites.collect {|s| s.people}.flatten.uniq - people
   end
   
   def self.find_linking_to(user)

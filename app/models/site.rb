@@ -15,7 +15,9 @@ class Site < ActiveRecord::Base
   # validates_format_of :url, :with => TODO [thorsten, 24.06.2008]
 
   has_many :connections
+  has_many :people, :through => :connections
   has_many :claims
+  has_many :users, :through => :claims
   
   before_save :enhance_url
   
