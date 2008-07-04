@@ -21,11 +21,12 @@ class Connection < ActiveRecord::Base
   belongs_to :site
   belongs_to :user
   
-  def name=(name)
-    self.person = Person.find_by_name(name) || Person.new(:name => name)
-  end
+  before_validation :name_to_person
+  
+  attr_accessor :name
+  
   def name
-    person ? person.name : nil
+    @name ||= (person ? person.name : nil)
   end
   
   def url=(url)
@@ -40,5 +41,10 @@ class Connection < ActiveRecord::Base
     sites = user.claims.map(&:site)
     connections_for_sites = sites.collect {|site| site.connections}.flatten
   end
+  
+  private
+    def name_to_person
+      self.person = user.people.find_by_name(name) || Person.new(:name => name, :user => user)
+    end
   
 end

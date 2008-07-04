@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   has_many :claims
   has_many :claimed_sites, :through => :claims, :source => :site
   has_many :connections
-  has_many :people, :through => :connections#, :source => :person
+  has_many :people
   
   before_save   :encrypt_password
   before_create :make_activation_code 
