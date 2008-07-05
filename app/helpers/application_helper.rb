@@ -32,6 +32,7 @@ module ApplicationHelper
   end
   
   def icon_link_to(url, size='pin')
+    puts "icon_link_to #{url}"
     link_to(icon_tag(url, size), url, :title => url)
   end
   

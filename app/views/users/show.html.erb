@@ -1,11 +1,11 @@
 <h1><%= photo_tag(@user.photo, :medium) %> <%=h @user.name %></h1>
 <%= link_to('edit profile', edit_user_path(current_user)) if self_view?(@user) %>
 
-<h3><%=h self_view?(@user) ? 'Your' : "#{@user.name}'s" %> claimed sites</h3>
+<h3><%=h self_view?(@user) ? 'Your' : "#{@user.name}'s" %> sites</h3>
 <ul>
-  <%- @claimed_sites.each do |site| -%>
+  <%- @user.claimed_sites.each do |site| -%>
     <li>
-      <%= icon_link_to(site.url) %> <%= auto_link site.url %>
+      <%= icon_link_to(site.url) %> <%= auto_link site.url %>, claimed
       <%- if false -%>
       <ul>
         <%- site.connections.each do |connection| -%>
@@ -19,6 +19,14 @@
       <%- end -%>
     </li>
   <%- end -%>
+  
+  <%- @user.representing_connections.each do |connection| -%>
+    <li>
+      <%= icon_link_to(connection.url) %> <%= auto_link connection.url %>,
+      connected to you by <%= small_user(connection.user) %>
+    </li>
+  <%- end -%>
+
 </ul>
 <%- if self_view?(@user) -%>
   <%- form_for :claim, :url => claims_path do |form| -%>

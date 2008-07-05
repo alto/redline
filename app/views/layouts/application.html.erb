@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
 <head>
-  <title>REDLINE - <%=h @page_title || 'Connecting people' %></title>
+  <title>REDLINE - <%=h @page_title || 'People over links' %></title>
 	<meta http-equiv="content-Language" content="de" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -59,7 +59,7 @@
         <%- end -%>    
       </div>
 
-      <div id="logo"><%= link_to('REDLINE <span>Connecting sites</span>', root_path) %></div>
+      <div id="logo"><%= link_to('REDLINE <span>People over links</span>', root_path) %></div>
     </div>
   
     <%- unless flash[:error].blank? -%>

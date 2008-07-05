@@ -1,14 +1,18 @@
 <h1>Search results for <%= icon_link_to(@query, 'mini') %> <%= auto_link @query %></h1>
 
 <%- if logged_in? -%>
+  <%- form_for :claim, :url => claims_path do |form| -%>
+    <%= form.hidden_field(:url) %>
+    <%= submit_tag('Claim this url') %>
+  <%- end -%>
   <%- form_for :connection, :url => connections_path do |form| -%>
-    <label for="connection_url">Connect this link:</label>
-    <%= form.text_field(:url) %>
+    <label for="connection_url">Connect this link to:</label>
+    <%= form.hidden_field(:url) %>
 
     <label for="connection_name">with</label>
     <%= form.text_field(:name) %>
 
-    <%= submit_tag('now') %>
+    <%= submit_tag('Connect') %>
   <%- end -%>
 <%- end -%>
 

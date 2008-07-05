@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_url_slug(params[:id])
-    @claimed_sites = @user.claimed_sites
     @linked_people = @user.people.uniq
+    @connection_on_
     @created_connections = @user.connections
     @linking_users = User.find_linking_to(@user)
     # @linking_people = Connection.find_to(@user)

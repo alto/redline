@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
     claimed_sites.collect {|s| s.people}.flatten.uniq - people
   end
   
+  def representing_connections
+    represented_people.collect {|p| p.connections}.flatten.select {|c| !claimed_sites.include?(c.site)}
+  end
+  
   def self.find_linking_to(user)
     sites = user.claims.map(&:site)
     connections_for_sites = sites.collect {|site| site.connections}.flatten

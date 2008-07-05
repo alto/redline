@@ -19,7 +19,7 @@ class Site < ActiveRecord::Base
   has_many :claims
   has_many :users, :through => :claims
   
-  before_save :enhance_url
+  before_validation :normalize_url
   
   def claimed?
     !claims.empty?
@@ -30,10 +30,12 @@ class Site < ActiveRecord::Base
     website =~ /^http/ ? website : "http://#{website}"
   end
 
-  private
-    def enhance_url
-      self.url = Site.ensure_protocol(url) if valid?
-    end
-
+  def self.normalize_url(url)
+    url = Site.ensure_protocol(url).gsub(/\/$/,'')
+  end
   
+  private
+    def normalize_url
+      self.url = Site.normalize_url(url)
+    end
 end
