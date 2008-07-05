@@ -9,8 +9,7 @@
 <h2>Try it out!</h2>
 <%- form_tag search_url, :method => :get do -%>
   <label for="query">Enter link</label>
-  <%= text_field_tag(:query) %>
-  
+  <%= text_field_tag(:query) %>  
   <%= submit_tag('to search for') %>
 <%- end -%>
 

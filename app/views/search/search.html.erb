@@ -1,4 +1,30 @@
+<%- form_tag search_url, :method => :get do -%>
+  <label for="query">Enter link</label>
+  <%= text_field_tag(:query,@query) %>  
+  <%= submit_tag('to search for') %>
+<%- end -%>
+
 <h1>Search results for <%= icon_link_to(@query, 'mini') %> <%= auto_link @query %></h1>
+
+<%- if @sites.empty? -%>
+  <em>nothing found</em>
+<%- else -%>
+  <ul>
+    <%- @sites.each do |site| -%>
+      <%- site.claims.each do |claim| -%>
+        <li>
+          claimed by <%= small_user(claim.user) %>
+        </li>
+      <%- end -%>
+      <%- site.connections.each do |connection| -%>
+        <li>
+          linked to <%=h connection.name %> 
+          by <%= small_user(connection.user) %>
+        </li>
+      <%- end -%>
+    <%- end -%>
+  </ul>
+<%- end -%>
 
 <%- if logged_in? -%>
   <%- form_for :claim, :url => claims_path do |form| -%>
@@ -16,18 +42,3 @@
   <%- end -%>
 <%- end -%>
 
-<ul>
-  <%- @sites.each do |site| -%>
-    <%- site.claims.each do |claim| -%>
-      <li>
-        claimed by <%= small_user(claim.user) %>
-      </li>
-    <%- end -%>
-    <%- site.connections.each do |connection| -%>
-      <li>
-        linked to <%=h connection.name %> 
-        by <%= small_user(connection.user) %>
-      </li>
-    <%- end -%>
-  <%- end -%>
-</ul>
