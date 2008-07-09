@@ -13,7 +13,7 @@ class UsersControllerTest < Test::Unit::TestCase
 
   context "Request to show" do
     setup do
-      @user = create_user
+      @user = Factory(:user)
     end
     should "be successfull" do
       get :show, :id => @user.to_param
