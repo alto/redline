@@ -1,3 +1,21 @@
+# == Schema Information
+# Schema version: 20080704215702
+#
+# Table name: photos
+#
+#  id           :integer(11)     not null, primary key
+#  user_id      :integer(11)     
+#  parent_id    :integer(11)     
+#  size         :integer(11)     
+#  width        :integer(11)     
+#  height       :integer(11)     
+#  content_type :string(255)     
+#  filename     :string(255)     
+#  thumbnail    :string(255)     
+#  created_at   :datetime        
+#  updated_at   :datetime        
+#
+
 class Photo < ActiveRecord::Base
   
   belongs_to :user

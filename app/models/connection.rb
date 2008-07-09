@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20080629091000
+# Schema version: 20080704215702
 #
 # Table name: connections
 #

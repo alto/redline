@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20080629091000
+# Schema version: 20080704215702
 #
 # Table name: users
 #
@@ -14,6 +14,8 @@
 #  remember_token_expires_at :datetime        
 #  activation_code           :string(40)      
 #  activated_at              :datetime        
+#  url_slug                  :string(255)     
+#  inviter_id                :integer(11)     
 #
 
 quentin:
