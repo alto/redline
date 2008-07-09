@@ -32,8 +32,9 @@ module ApplicationHelper
   end
   
   def icon_link_to(url, size='pin')
-    puts "icon_link_to #{url}"
-    link_to(icon_tag(url, size), url, :title => url)
+    link_to(icon_tag(url, size), search_path(:query => url), :title => url) + ' ' +
+    link_to(url, search_path(:query => url), :title => url) +
+    " (#{link_to('out', url)})"
   end
   
   def icon_tag(url, size='mini')
@@ -50,6 +51,10 @@ module ApplicationHelper
   
   def invited?
     !session[:inviter].blank?
+  end
+  
+  def display_date(time)
+    time.strftime('%d.%m.%Y')
   end
   
 end

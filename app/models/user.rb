@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   belongs_to :inviter, :class_name => 'User'
   has_one :photo, :dependent => :destroy
   
-  has_many :claims
+  has_many :claims, :order => 'created_at ASC'
   has_many :claimed_sites, :through => :claims, :source => :site
   has_many :connections
   has_many :people

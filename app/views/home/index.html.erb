@@ -3,14 +3,14 @@
 
 <p>
   We love the Internet. We love websites, and hyperlinks. And more than that, we love URLs.
-  But, we love people more.
+  But, we love <strong>people</strong> more.
 </p>
 
 <h2>Try it out!</h2>
 <%- form_tag search_url, :method => :get do -%>
-  <label for="query">Enter link</label>
+  <label for="query">Enter link <strong>http://</strong></label>
   <%= text_field_tag(:query) %>  
-  <%= submit_tag('to search for') %>
+  <%= submit_tag('Search') %>
 <%- end -%>
 
 <h2>People so far</h2>

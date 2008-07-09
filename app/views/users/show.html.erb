@@ -3,12 +3,13 @@
 
 <h3><%=h self_view?(@user) ? 'Your' : "#{@user.name}'s" %> sites</h3>
 <ul>
-  <%- @user.claimed_sites.each do |site| -%>
+  <%- @user.claims.each do |claim| -%>
     <li>
-      <%= icon_link_to(site.url) %> <%= auto_link site.url %>, claimed
+      <%= icon_link_to(claim.url) %>, 
+      claimed at <%= display_date(claim.created_at) %>
       <%- if false -%>
       <ul>
-        <%- site.connections.each do |connection| -%>
+        <%- claim.site.connections.each do |connection| -%>
           <li>
             <%= link_to(photo_tag(connection.user.photo, :mini), user_path(connection.user),
                 :title => "#{h connection.user.name} named it #{h connection.name}") %>:
@@ -22,7 +23,7 @@
   
   <%- @user.representing_connections.each do |connection| -%>
     <li>
-      <%= icon_link_to(connection.url) %> <%= auto_link connection.url %>,
+      <%= icon_link_to(connection.url) %>,
       connected to you by <%= small_user(connection.user) %>
     </li>
   <%- end -%>

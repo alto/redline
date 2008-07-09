@@ -1,10 +1,12 @@
-<%- form_tag search_url, :method => :get do -%>
-  <label for="query">Enter link</label>
-  <%= text_field_tag(:query,@query) %>  
-  <%= submit_tag('to search for') %>
-<%- end -%>
+<div class="prefix_3 grid_6 suffix_3">
+  <%- form_tag search_url, :method => :get do -%>
+    <label for="query">Enter link</label>
+    <%= text_field_tag(:query,@query) %>  
+    <%= submit_tag('Search') %>
+  <%- end -%>
+</div>
 
-<h1>Search results for <%= icon_link_to(@query, 'mini') %> <%= auto_link @query %></h1>
+<h1>Search results for <%= icon_link_to(@query, 'mini') %></h1>
 
 <%- if @sites.empty? -%>
   <em>nothing found</em>
