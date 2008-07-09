@@ -76,7 +76,6 @@ class User < ActiveRecord::Base
   end
   
   def photo_file=(photo_file)
-    # photo.destroy if photo
     unless photo_file.blank?
       self.create_photo(:uploaded_data => photo_file, :user_id => self.id)
     end

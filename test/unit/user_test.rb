@@ -49,9 +49,14 @@ class UserTest < Test::Unit::TestCase
     should_require_unique_attributes :email
   end
   
-  # context "A user" do
-  #   should_have_many :sites
-  # end
+  context "A user" do
+    should_belong_to :inviter
+    should_have_one :photo
+    should_have_many :claims
+    should_have_many :claimed_sites
+    should_have_many :connections
+    should_have_many :people
+  end
   
   context "User authentication" do
     should "provide a check method" do
@@ -129,5 +134,4 @@ class UserTest < Test::Unit::TestCase
       assert @user.remember_token_expires_at.between?(before, after)
     end
   end
-
 end
