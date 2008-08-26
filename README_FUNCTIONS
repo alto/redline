@@ -1,0 +1,24 @@
+Probleme
+- Site-Urls mit und ohne / am Ende
+
+
+Was will ich sehen, wenn...
+
+...ich mir eine Person anschaue?
+- welche Sites der Person gehören
+- welche Sites mit der Person verknüpft sind
+- wer die Person verlinkt hat
+
+...ich eine URL eingebe?
+- welche Personen mit der URL verlinkt sind
+
+
+# add a connection (provide name for person)
+# show person and his/her connections
+
+# merge two people
+# edit person
+  - define connection (friend, family, business contact, etc.)
+  - provide image
+
+

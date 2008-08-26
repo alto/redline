@@ -30,7 +30,7 @@
 
 </ul>
 <%- if self_view?(@user) -%>
-  <%- form_for :claim, :url => claims_path do |form| -%>
+  <%- form_for :claim, :url => user_claims_path(@user) do |form| -%>
     <label for="claim_url">URL:</label>
     <%= form.text_field(:url) %>
     <%= submit_tag('Claim this url') %>
@@ -106,7 +106,7 @@
 
 <%- if self_view?(@user) -%>
   <%= error_messages_for :connection %>
-  <%- form_for :connection, :url => connections_path do |form| -%>
+  <%- form_for :connection, :url => user_connections_path(@user) do |form| -%>
     <label for="connection_url">URL:</label>
     <%= form.text_field(:url) %>
   

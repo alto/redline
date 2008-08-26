@@ -1,1 +1,8 @@
 Combine urls with people
+
+Commands
+- add claim <url>
+- remove claim <url>
+- add connection <url> <name>
+- remove connection <url> <name>
+
