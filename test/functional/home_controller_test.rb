@@ -1,10 +1,18 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'home_controller'
 
 class HomeControllerTest < ActionController::TestCase
-  def setup
-    @controller = HomeController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+
+  context "Routing" do
+    should "route home index requests" do
+      assert_routing '/', :controller => 'home', :action => 'index'
+    end
+  end
+  
+  context "Request to index" do
+    should "deliver users" do
+      user = create_user
+      get :index
+      assert_equal [user], assigns(:users)
+    end
   end
 end

@@ -4,7 +4,7 @@ class UserTest < Test::Unit::TestCase
 
   context "Validating a user" do
     setup do
-      @user = Factory(:user)
+      @user = create_user
     end
   
     should_require_attributes :login
@@ -66,7 +66,7 @@ class UserTest < Test::Unit::TestCase
 
   context "Creating a user" do
     setup do
-      @user = Factory(:user)
+      @user = create_user
     end
     should "store it in the database" do
       assert !@user.new_record?
@@ -78,7 +78,7 @@ class UserTest < Test::Unit::TestCase
   
   context "Updating a user" do
     setup do
-      @user = Factory(:user)
+      @user = create_user
       @user.activate
     end
     should "update the password" do
@@ -93,7 +93,7 @@ class UserTest < Test::Unit::TestCase
   
   context "User authentication" do
     setup do
-      @user = Factory(:user)
+      @user = create_user
       @user.activate
     end
     should "be successfull" do
