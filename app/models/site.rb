@@ -16,8 +16,9 @@ class Site < ActiveRecord::Base
 
   has_many :namings
   has_many :people, :through => :namings
+  has_many :namers, :through => :namings, :source => :user
   has_many :claims
-  has_many :users, :through => :claims
+  has_many :claimers, :through => :claims, :source => :user
   
   before_validation :normalize_url
   

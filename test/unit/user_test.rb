@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class UserTest < Test::Unit::TestCase
+class UserTest < ActiveSupport::TestCase
 
   context "Validating a user" do
     setup do
@@ -53,7 +53,7 @@ class UserTest < Test::Unit::TestCase
     should_belong_to :inviter
     should_have_one :photo
     should_have_many :claims
-    should_have_many :claimed_sites
+    should_have_many :sites
     should_have_many :namings
     should_have_many :people
   end

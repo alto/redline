@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   has_one :photo, :dependent => :destroy
   
   has_many :claims, :order => 'created_at ASC'
-  has_many :claimed_sites, :through => :claims, :source => :site
+  has_many :sites, :through => :claims
   has_many :namings
   has_many :people
   
@@ -58,19 +58,19 @@ class User < ActiveRecord::Base
   end
   
   def colleages
-    claimed_sites.collect {|s| s.users}.flatten - [self]
+    sites.collect {|s| s.users}.flatten - [self]
   end
   
   def represented_people
-    claimed_sites.collect {|s| s.people}.flatten.uniq - people
+    sites.collect {|s| s.people}.flatten.uniq - people
   end
   
   def representing_namings
-    represented_people.collect {|p| p.namings}.flatten.select {|c| !claimed_sites.include?(c.site)}
+    represented_people.collect {|p| p.namings}.flatten.select {|c| !sites.include?(c.site)}
   end
   
   def self.find_linking_to(user)
-    sites = user.claims.map(&:site)
+    sites = user.claims.map(&:site) # TODO: same as user.sites? [thorsten, 29.08.2008]
     namings_for_sites = sites.collect {|site| site.namings}.flatten
     namings_for_sites.map(&:user).uniq - [user]
   end
