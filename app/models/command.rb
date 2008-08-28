@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20080828143000
+# Schema version: 20080828215249
 #
 # Table name: commands
 #

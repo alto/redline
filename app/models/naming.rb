@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20080828143000
+# Schema version: 20080828215249
 #
 # Table name: namings
 #
@@ -9,6 +9,7 @@
 #  created_at :datetime        
 #  updated_at :datetime        
 #  user_id    :integer(11)     
+#  deleted_at :datetime        
 #
 
 class Naming < ActiveRecord::Base
