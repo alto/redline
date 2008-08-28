@@ -16,9 +16,9 @@ class Person < ActiveRecord::Base
 
   belongs_to :user
   
-  has_many :connections
-  has_many :people, :through => :connections
-  has_many :sites, :through => :connections
+  has_many :namings
+  has_many :people, :through => :namings
+  has_many :sites, :through => :namings
   
   def representing_users
     sites.collect {|s| s.users}.flatten
@@ -40,8 +40,8 @@ class Person < ActiveRecord::Base
   
   def self.find_linking_to(user)
     sites = user.claims.map(&:site)
-    connections_for_sites = sites.collect {|site| site.connections}.flatten
-    connections_for_sites.map(&:person)
+    namings_for_sites = sites.collect {|site| site.namings}.flatten
+    namings_for_sites.map(&:person)
   end
   
 end

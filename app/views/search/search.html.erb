@@ -18,10 +18,10 @@
           claimed by <%= small_user(claim.user) %>
         </li>
       <%- end -%>
-      <%- site.connections.each do |connection| -%>
+      <%- site.namings.each do |naming| -%>
         <li>
-          linked to <%=h connection.name %> 
-          by <%= small_user(connection.user) %>
+          linked to <%=h naming.name %> 
+          by <%= small_user(naming.user) %>
         </li>
       <%- end -%>
     <%- end -%>
@@ -33,11 +33,11 @@
     <%= form.hidden_field(:url) %>
     <%= submit_tag('Claim this url') %>
   <%- end -%>
-  <%- form_for :connection, :url => connections_path do |form| -%>
-    <label for="connection_url">Connect this link to:</label>
+  <%- form_for :naming, :url => namings_path do |form| -%>
+    <label for="naming_url">Connect this link to:</label>
     <%= form.hidden_field(:url) %>
 
-    <label for="connection_name">with</label>
+    <label for="naming_name">with</label>
     <%= form.text_field(:name) %>
 
     <%= submit_tag('Connect') %>

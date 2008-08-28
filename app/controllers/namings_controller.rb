@@ -1,18 +1,18 @@
-class ConnectionsController < ApplicationController
+class NamingsController < ApplicationController
   
   before_filter :login_required
   before_filter :load_user, :only => [:show,:index]
   
   def index
     respond_to do |format|
-      format.xml {render :xml => @user.connections}
+      format.xml {render :xml => @user.namings}
     end
   end
   
   def create
-    @connection = Connection.new(params[:connection])
-    @connection.user = current_user
-    @connection.save!
+    @naming = Naming.new(params[:naming])
+    @naming.user = current_user
+    @naming.save!
     redirect_to user_path(current_user)
   end
   

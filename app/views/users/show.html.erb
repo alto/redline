@@ -9,11 +9,11 @@
       claimed at <%= display_date(claim.created_at) %>
       <%- if false -%>
       <ul>
-        <%- claim.site.connections.each do |connection| -%>
+        <%- claim.site.namings.each do |naming| -%>
           <li>
-            <%= link_to(photo_tag(connection.user.photo, :mini), user_path(connection.user),
-                :title => "#{h connection.user.name} named it #{h connection.name}") %>:
-            <%=h connection.name %>
+            <%= link_to(photo_tag(naming.user.photo, :mini), user_path(naming.user),
+                :title => "#{h naming.user.name} named it #{h naming.name}") %>:
+            <%=h naming.name %>
           </li>
         <%- end -%>
       </ul>
@@ -21,10 +21,10 @@
     </li>
   <%- end -%>
   
-  <%- @user.representing_connections.each do |connection| -%>
+  <%- @user.representing_namings.each do |naming| -%>
     <li>
-      <%= icon_link_to(connection.url) %>,
-      connected to you by <%= small_user(connection.user) %>
+      <%= icon_link_to(naming.url) %>,
+      connected to you by <%= small_user(naming.user) %>
     </li>
   <%- end -%>
 
@@ -62,12 +62,12 @@
       <%- end -%>
       <%- if false -%>
       <ul>
-        <%- person.connections.each do |connection| -%>
+        <%- person.namings.each do |naming| -%>
           <li>
-            <%= auto_link connection.url %>
-            <%- if false && connection.site.claimed? -%>
+            <%= auto_link naming.url %>
+            <%- if false && naming.site.claimed? -%>
               (claimed by 
-              <%= connection.site.claims.collect {|claim| link_to(claim.user.name, user_path(claim.user)) }.join(',') %>)
+              <%= naming.site.claims.collect {|claim| link_to(claim.user.name, user_path(claim.user)) }.join(',') %>)
             <%- end -%>
           </li>
         <%- end -%>
@@ -97,20 +97,20 @@
   <%- end -%>
 </ul>
 
-<h3>Connections <%=h self_view?(@user) ? 'you' : @user.name %> created</h3>
+<h3>Namings <%=h self_view?(@user) ? 'you' : @user.name %> created</h3>
 <ul>
-  <%- @created_connections.each do |connection| -%>
-    <li><%=h connection.name %> - <%= auto_link connection.url %></li>
+  <%- @created_namings.each do |naming| -%>
+    <li><%=h naming.name %> - <%= auto_link naming.url %></li>
   <%- end -%>
 </ul>
 
 <%- if self_view?(@user) -%>
-  <%= error_messages_for :connection %>
-  <%- form_for :connection, :url => user_connections_path(@user) do |form| -%>
-    <label for="connection_url">URL:</label>
+  <%= error_messages_for :naming %>
+  <%- form_for :naming, :url => user_namings_path(@user) do |form| -%>
+    <label for="naming_url">URL:</label>
     <%= form.text_field(:url) %>
   
-    <label for="connection_name">Name:</label>
+    <label for="naming_name">Name:</label>
     <%= form.text_field(:name) %>
   
     <p><%= submit_tag('Connect') %></p>

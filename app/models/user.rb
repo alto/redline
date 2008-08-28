@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   
   has_many :claims, :order => 'created_at ASC'
   has_many :claimed_sites, :through => :claims, :source => :site
-  has_many :connections
+  has_many :namings
   has_many :people
   
   before_save   :encrypt_password
@@ -65,14 +65,14 @@ class User < ActiveRecord::Base
     claimed_sites.collect {|s| s.people}.flatten.uniq - people
   end
   
-  def representing_connections
-    represented_people.collect {|p| p.connections}.flatten.select {|c| !claimed_sites.include?(c.site)}
+  def representing_namings
+    represented_people.collect {|p| p.namings}.flatten.select {|c| !claimed_sites.include?(c.site)}
   end
   
   def self.find_linking_to(user)
     sites = user.claims.map(&:site)
-    connections_for_sites = sites.collect {|site| site.connections}.flatten
-    connections_for_sites.map(&:user).uniq - [user]
+    namings_for_sites = sites.collect {|site| site.namings}.flatten
+    namings_for_sites.map(&:user).uniq - [user]
   end
   
   def photo_file=(photo_file)

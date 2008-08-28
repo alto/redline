@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.search            'search',                   :controller => 'search',:action => 'search'
 
   map.resource :session
-  map.resources :users, :has_many => [:connections, :claims, :people]
+  map.resources :users, :has_many => [:namings, :claims, :people]
 
   map.root :controller => "home"
 

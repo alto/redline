@@ -54,7 +54,7 @@ class UserTest < Test::Unit::TestCase
     should_have_one :photo
     should_have_many :claims
     should_have_many :claimed_sites
-    should_have_many :connections
+    should_have_many :namings
     should_have_many :people
   end
   

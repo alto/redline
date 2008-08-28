@@ -11,7 +11,7 @@
 #  user_id    :integer(11)     
 #
 
-class Connection < ActiveRecord::Base
+class Naming < ActiveRecord::Base
 
   validates_presence_of :person
   validates_presence_of :site
@@ -39,7 +39,7 @@ class Connection < ActiveRecord::Base
   
   def self.find_to(user)
     sites = user.claims.map(&:site)
-    connections_for_sites = sites.collect {|site| site.connections}.flatten
+    namings_for_sites = sites.collect {|site| site.namings}.flatten
   end
   
   private

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ConnectionTest < ActiveSupport::TestCase
+class NamingTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   def test_truth
     assert true

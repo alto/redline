@@ -1,0 +1,2 @@
+module NamingsHelper
+end
