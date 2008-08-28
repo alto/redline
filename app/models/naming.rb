@@ -12,26 +12,28 @@
 #
 
 class Naming < ActiveRecord::Base
+  acts_as_deletable :after => :removed_naming
 
-  validates_presence_of :person
-  validates_presence_of :site
+  validates_presence_of :site_id
   validates_presence_of :user_id
+  validates_presence_of :person_id
   
-  belongs_to :person
   belongs_to :site
   belongs_to :user
+  belongs_to :person
   
-  before_validation :name_to_person
+  after_create :added_naming
   
-  attr_accessor :name
-  
+  def name=(name)
+    self.person = Person.find_by_name(name) || Person.create(:name => name)
+  end
   def name
-    @name ||= (person ? person.name : nil)
+    person ? person.name : nil
   end
   
   def url=(url)
     url = Site.ensure_protocol(url)
-    self.site = Site.find_by_url(url) || Site.new(:url => url)
+    self.site = Site.find_by_url(url) || Site.create(:url => url)
   end
   def url
     site ? site.url : nil
@@ -43,8 +45,11 @@ class Naming < ActiveRecord::Base
   end
   
   private
-    def name_to_person
-      self.person = user.people.find_by_name(name) || Person.new(:name => name, :user => user)
+    def added_naming
+      Command.create!(:user => self.user, :action => 'added_naming', :commandable => self)
+    end
+    def removed_naming
+      Command.create!(:user => self.user, :action => 'removed_naming', :commandable => self)
     end
   
 end

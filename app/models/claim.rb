@@ -38,5 +38,4 @@ class Claim < ActiveRecord::Base
       Command.create!(:user => self.user, :action => 'removed_claim', :commandable => self)
     end
   
-  
 end

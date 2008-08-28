@@ -37,6 +37,19 @@ def create_site(options={})
   s
 end
 
+def person_fields(options={})
+  { :name => 'person name',
+  }.merge(options)
+end
+def build_person(options={})
+  Person.new(person_fields(options))
+end
+def create_person(options={})
+  s = build_person(options)
+  s.save!
+  s
+end
+
 def claim_fields(options={})
   { :site => create_site,
     :user => find_or_create_user
@@ -47,6 +60,21 @@ def build_claim(options={})
 end
 def create_claim(options={})
   c = build_claim(options)
+  c.save!
+  c
+end
+
+def naming_fields(options={})
+  { :site => create_site,
+    :name => 'person name',
+    :user => find_or_create_user
+  }.merge(options)
+end
+def build_naming(options={})
+  Naming.new(naming_fields(options))
+end
+def create_naming(options={})
+  c = build_naming(options)
   c.save!
   c
 end

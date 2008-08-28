@@ -23,9 +23,9 @@ class Command < ActiveRecord::Base
   
   def undo!
     undone = case action
-    when 'added_claim'
+    when 'added_claim', 'added_naming'
       commandable.delete!(false)
-    when 'removed_claim'
+    when 'removed_claim', 'removed_naming'
       commandable.undelete!
     end
     update_attribute(:undone_at, Time.now) if undone
