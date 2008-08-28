@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20080704215702
+# Schema version: 20080828143000
 #
 # Table name: claims
 #
@@ -8,6 +8,7 @@
 #  site_id    :integer(11)     
 #  created_at :datetime        
 #  updated_at :datetime        
+#  deleted_at :datetime        
 #
 
 class Claim < ActiveRecord::Base

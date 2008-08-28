@@ -1,7 +1,7 @@
 # == Schema Information
-# Schema version: 20080704215702
+# Schema version: 20080828143000
 #
-# Table name: connections
+# Table name: namings
 #
 #  id         :integer(11)     not null, primary key
 #  person_id  :integer(11)     

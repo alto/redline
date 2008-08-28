@@ -1,3 +1,18 @@
+# == Schema Information
+# Schema version: 20080828143000
+#
+# Table name: commands
+#
+#  id               :integer(11)     not null, primary key
+#  user_id          :integer(11)     
+#  action           :string(255)     
+#  commandable_type :string(255)     
+#  commandable_id   :integer(11)     
+#  created_at       :datetime        
+#  updated_at       :datetime        
+#  undone_at        :datetime        
+#
+
 class Command < ActiveRecord::Base
   
   validates_presence_of :user_id
