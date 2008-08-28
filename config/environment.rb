@@ -67,3 +67,4 @@ Rails::Initializer.run do |config|
 end
 
 require "#{RAILS_ROOT}/lib/core_extensions"
+require "#{RAILS_ROOT}/lib/acts_as_deletable"

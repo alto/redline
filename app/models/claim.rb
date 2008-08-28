@@ -11,13 +11,16 @@
 #
 
 class Claim < ActiveRecord::Base
+  acts_as_deletable :after => :removed_claim
 
-  validates_presence_of :user
-  validates_presence_of :site
+  validates_presence_of :user_id
+  validates_presence_of :site_id
   
   belongs_to :user
   belongs_to :site
   
+  after_create :added_claim
+
   def url=(url)
     url = Site.ensure_protocol(url)
     self.site = Site.find_by_url(url) || Site.new(:url => url)
@@ -25,5 +28,14 @@ class Claim < ActiveRecord::Base
   def url
     site ? site.url : nil
   end
+  
+  private
+    def added_claim
+      Command.create!(:user => self.user, :action => 'added_claim', :commandable => self)
+    end
+    def removed_claim
+      Command.create!(:user => self.user, :action => 'removed_claim', :commandable => self)
+    end
+  
   
 end

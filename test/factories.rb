@@ -24,50 +24,45 @@ def find_or_create_user(options={})
   User.find_by_login(options[:login] || 'dude') || create_user(options)
 end
 
-def towwl_fields(options={})
-  { :name => 'towwl name',
+def site_fields(options={})
+  { :url => 'http://factory.com',
+  }.merge(options)
+end
+def build_site(options={})
+  Site.new(site_fields(options))
+end
+def create_site(options={})
+  s = build_site(options)
+  s.save!
+  s
+end
+
+def claim_fields(options={})
+  { :site => create_site,
     :user => find_or_create_user
   }.merge(options)
 end
-def build_towwl(options={})
-  Towwl.new(towwl_fields(options))
+def build_claim(options={})
+  Claim.new(claim_fields(options))
 end
-def create_towwl(options={})
-  t = build_towwl(options)
-  t.save!
-  t
-end
-  
-def item_fields(options={})
-  { :text => 'item text',
-    :user => find_or_create_user,
-    :towwl => options[:towwl] || create_towwl
-  }.merge(options)
-end
-def build_item(options={})
-  Item.new(item_fields(options))
-end
-def create_item(options={})
-  i = build_item(options)
-  i.save!
-  i
+def create_claim(options={})
+  c = build_claim(options)
+  c.save!
+  c
 end
 
 def command_fields(options={})
-  { :action => 'created_towwl',
+  { :action => 'added_claim',
     :user => find_or_create_user,
-    :commandable => build_towwl
+    :commandable => build_claim
   }.merge(options)
 end
 def build_command(options={})
   Command.new(command_fields(options))
 end
 def create_command(options={})
-  commandable = options[:commandable] || create_towwl
+  commandable = options[:commandable] || create_claim
   latest_command_for(commandable)
-  # c = build_command(options)
-  # c.save!
-  # c
 end
 def latest_command_for(commandable)
   Command.find(:first, :conditions => {:commandable_type => commandable.class.to_s, :commandable_id => commandable.id}, 
